@@ -18,6 +18,7 @@ public class NetworkOperator {
 	private GeneralTariff [] tariffs;
 	private int countGlobalTariffs;
 	private int countLocalTariffs;
+	private String operatorNumberCode;
 	
 	private int globalIdTariffId;
 	
@@ -49,6 +50,12 @@ public class NetworkOperator {
 	}
 	public int getOperatorId() {
 		return operatorId;
+	}
+	public String getOperatorNumberCode() {
+		return operatorNumberCode;
+	}
+	public void setOperatorNumberCode(String operatorNumberCode) {
+		this.operatorNumberCode = operatorNumberCode;
 	}
 	
 }
