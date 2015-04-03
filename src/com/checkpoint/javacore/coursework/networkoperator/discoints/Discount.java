@@ -1,6 +1,9 @@
 package com.checkpoint.javacore.coursework.networkoperator.discoints;
 
 public interface Discount {
+	
+	int getID();
+	String getName();
 	int getDiscount();
-	int setDiscount(int value);
+	Discount resetDiscount(int value);
 }

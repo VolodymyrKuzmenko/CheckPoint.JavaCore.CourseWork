@@ -10,6 +10,6 @@ public interface MobilePackage {
 	 MobilePackage setLocalTariff(LocalTarif tariffNew);
 	 MobilePackage setGlobalTariff(GlobalTariif tariffNew);
 	 Information getInformation(Class<Information> type);
-	 
+	 int calculateCharge(int time, int abonentKey, int foreginOperator);
 	
 }
