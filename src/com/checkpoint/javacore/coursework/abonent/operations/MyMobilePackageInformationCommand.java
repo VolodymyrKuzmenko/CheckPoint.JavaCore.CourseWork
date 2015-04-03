@@ -5,13 +5,15 @@ public class MyMobilePackageInformationCommand implements OperationCommand {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void execute() {
+	public int getResieverId() {
 		// TODO Auto-generated method stub
-
+		return 0;
 	}
+
+	
 
 }

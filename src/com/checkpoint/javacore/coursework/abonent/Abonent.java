@@ -8,7 +8,7 @@ import com.checkpoint.javacore.coursework.networkoperator.packages.MobilePackage
 public class Abonent {
 	private int number;
 	private NetworkOperator myOperator;
-	private PersonalAccaunt myAccaunt = new PersonalAccaunt();
+	private PersonalAccaunt myAccaunt;
 //	private Operations myOperations;
 	private MobilePackage mobilePackage;
 	private Position myCurrentPosition;
@@ -27,5 +27,9 @@ public class Abonent {
 	public Abonent linkMobilePackage(MobilePackage package1){
 		this.mobilePackage = package1;
 		return this;
+	}
+	
+	public Position getMyPosition(){
+		return myCurrentPosition;
 	}
 }
