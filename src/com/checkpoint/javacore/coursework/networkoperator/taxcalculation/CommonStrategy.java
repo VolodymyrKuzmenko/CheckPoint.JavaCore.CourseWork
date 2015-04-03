@@ -41,6 +41,19 @@ public abstract class CommonStrategy implements TaxCalculatingStrategy {
 	@Override
 	public abstract int calculate();
 
+	@Override
+	public TaxCalculatingStrategy removeLinks(){
+		discounts = null;
+		fee = null;
+		foreginOperatorValue = 0;
+		return this;
+	}
+	
+	@Override
+	public boolean isLinked() {
+		return foreginOperatorValue!=0 && fee != null && discounts!=null;
+	};
+	
 	protected int calculateDiscountValue() {
 		int discountValue = 0;
 		for (Discount discount : discounts) {
@@ -48,6 +61,7 @@ public abstract class CommonStrategy implements TaxCalculatingStrategy {
 		}
 		return discountValue;
 	}
+	
 	
 	
 	protected Date getDateCalls(){

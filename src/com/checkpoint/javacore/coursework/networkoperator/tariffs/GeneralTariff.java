@@ -7,15 +7,11 @@ public class GeneralTariff{
 	private int id;
 	protected Discount [] discounts;
 	protected LicenseFee licenseFee;
-	private int value;
+	protected String name;
 	
-	public int getTariff(){
-		return value;
-	}
-	
-	
-	protected void protectedCalcTariff(int newValue){
-		
+	public GeneralTariff(int id, String name){
+		this.id = id;
+		this.name = name;
 	}
 	
 	public GeneralTariff linkDiscounts(Discount ... discounts){

@@ -8,6 +8,8 @@ public interface TaxCalculatingStrategy {
 	TaxCalculatingStrategy addDiscount(Discount ... discounts);
 	TaxCalculatingStrategy addLicenseFee(LicenseFee fee);
 	TaxCalculatingStrategy addForeginOperatorValue(int value);
+	TaxCalculatingStrategy removeLinks();
+	boolean isLinked();
 	
 	int calculate();
 }

@@ -1,17 +1,30 @@
 package com.checkpoint.javacore.coursework.networkoperator.tariffs;
 
-import java.util.ArrayList;
 
 import com.checkpoint.javacore.coursework.networkoperator.NetworkOperator;
-import com.checkpoint.javacore.coursework.networkoperator.licenses.LicenseFee;
+import com.checkpoint.javacore.coursework.networkoperator.taxcalculation.TaxCalculatingStrategy;
 
 public class GlobalTariif extends GeneralTariff {
-	private ArrayList<NetworkOperator> operators;
+	private NetworkOperator myOperator;
 	
-	public GlobalTariif(LicenseFee globalLicenseFee, ArrayList<NetworkOperator> operators) {
-		super();
-		this.operators = operators;
-		setLicenseFee(globalLicenseFee);
+	public GlobalTariif(NetworkOperator myOperator, int id, String name) {
+		super(id, name);
+		this.myOperator = myOperator;
 	}
 	
+	
+//id стороннього оператора, куда дзвонитиму
+	public int calculateMoneyPay(int timeCall, TaxCalculatingStrategy strategy, int idOperator){
+		if(strategy.isLinked()){
+			strategy.addPeriodTime(timeCall);
+			return strategy.calculate();			
+		}else{
+			strategy.addDiscount(discounts);
+			strategy.addLicenseFee(licenseFee);
+			strategy.addForeginOperatorValue(myOperator.getForeginGlobalTariffValueByIdForeginOperator(idOperator));
+			return strategy.calculate();
+			
+		}
+	
+	}
 }

@@ -5,6 +5,7 @@ import com.checkpoint.javacore.coursework.networkoperator.discoints.Discount;
 import com.checkpoint.javacore.coursework.networkoperator.licenses.LicenseFee;
 
 public class TaxPerMinutesStrategy  extends CommonStrategy implements TaxCalculatingStrategy {
+	
 	@Override
 	public TaxCalculatingStrategy addPeriodTime(long time) {
 		super.addPeriodTime(time);

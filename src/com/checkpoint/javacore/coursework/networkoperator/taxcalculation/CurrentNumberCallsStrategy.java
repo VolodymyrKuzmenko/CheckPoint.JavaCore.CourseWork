@@ -44,6 +44,12 @@ public class CurrentNumberCallsStrategy extends CommonStrategy implements TaxCal
 		this.numberCalls = maxNumbercalls;
 		return this;
 	}
+
+	@Override
+	public TaxCalculatingStrategy removeLinks() {
+		
+		return this;
+	}
 	
 
 }
