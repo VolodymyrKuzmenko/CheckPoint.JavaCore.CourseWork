@@ -10,6 +10,11 @@ public class NetworkOperatorSender {
 	private NetworkOperator operator;
 	private ArrayList<Abonent> abonents;
 	
+	public NetworkOperatorSender(NetworkOperator operator, ArrayList<Abonent> abonents) {
+		this.operator = operator;
+		this.abonents = abonents;
+	}
+	
 	public void singleSending(Abonent abonent, OperationCommand command){
 		operator.getGround().makeTransaction(abonent,command);
 	}
