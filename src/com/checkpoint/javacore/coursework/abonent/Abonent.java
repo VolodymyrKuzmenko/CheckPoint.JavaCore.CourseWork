@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import com.checkpoint.javacore.coursework.abonent.operations.ResupplyMoneyCommand;
 import com.checkpoint.javacore.coursework.abonent.operations.ResupplyOtherMoneyCommand;
+import com.checkpoint.javacore.coursework.abonent.operations.SentSMSMessageCommand;
 import com.checkpoint.javacore.coursework.abonent.operations.TelephoneCallCommand;
 import com.checkpoint.javacore.coursework.network.Ground;
 import com.checkpoint.javacore.coursework.network.Position;
@@ -101,10 +102,20 @@ public class Abonent {
 		myAccaunt.transaction(mobilePackage.calculateCharge((int)timeMiles, id, idOperator));
 	}
 	
+	
+	public void sentSMSmessage(String numberResiever){
+		String s = "simple sms masege form "+ Integer.toString(number); 
+		ground.makeTransaction(this, new SentSMSMessageCommand(this, s).setNumberResiever(numberResiever).setResiever(myOperator.getSender()));
+	}
+	
 	public void receiveMessageFromOperator(String text){
 		System.out.println("Operator to "+number+ ": "+ text);
 	}
 	
+	public void resieveSMSMessage(String text, int fromNumber){
+		System.out.println(fromNumber +" to "+number+ ": "+ text);
+		
+	}
 	public int getNetworkOperatorId(){
 		return myOperator.getOperatorId();
 	}

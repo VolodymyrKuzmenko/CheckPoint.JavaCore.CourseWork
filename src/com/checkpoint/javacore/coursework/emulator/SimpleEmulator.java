@@ -43,7 +43,7 @@ public class SimpleEmulator {
 	
 	Abonent ab = new Abonent(g,1).linkMobilePackage(p).linkOperator(operator).linkNumber("234234").linkPersonalAcaunt(500, 1).linkAbonentPosition(100, 100);
 	
-	Abonent ba = new Abonent(g,2).linkMobilePackage(p).linkOperator(operator).linkNumber("678678").linkPersonalAcaunt(500, 2).linkAbonentPosition(80, 80);
+	Abonent ba = new Abonent(g,2).linkMobilePackage(p).linkOperator(operator).linkNumber("678678").linkPersonalAcaunt(500, 2).linkAbonentPosition(0, 0);
 	
 	operator.addAbonent(ab);
 	operator.addAbonent(ba);
@@ -52,7 +52,9 @@ public class SimpleEmulator {
 	
 	//ab.resuplyMoneyCommand(100);
 	
-	ab.resuplyMoneyOtherUserCommand(50, "123678678");
+	//ab.resuplyMoneyOtherUserCommand(50, "123678678");
+	
+	ab.sentSMSmessage("123678678");
 
 	
 	}
