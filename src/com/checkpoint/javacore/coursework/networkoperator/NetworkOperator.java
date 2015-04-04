@@ -3,6 +3,8 @@ package com.checkpoint.javacore.coursework.networkoperator;
 import java.util.ArrayList;
 
 
+
+import com.checkpoint.javacore.coursework.network.Ground;
 import com.checkpoint.javacore.coursework.networkoperator.discoints.Discount;
 import com.checkpoint.javacore.coursework.networkoperator.licenses.LicenseFee;
 import com.checkpoint.javacore.coursework.networkoperator.packages.MobilePackage;
@@ -19,6 +21,8 @@ public class NetworkOperator {
 	private int countGlobalTariffs;
 	private int countLocalTariffs;
 	private String operatorNumberCode;
+	private Ground ground;
+	
 	
 	private int globalIdTariffId;
 	
@@ -56,6 +60,12 @@ public class NetworkOperator {
 	}
 	public void setOperatorNumberCode(String operatorNumberCode) {
 		this.operatorNumberCode = operatorNumberCode;
+	}
+	public Ground getGround() {
+		return ground;
+	}
+	public void setGround(Ground ground) {
+		this.ground = ground;
 	}
 	
 }

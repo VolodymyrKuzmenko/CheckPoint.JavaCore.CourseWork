@@ -1,11 +1,15 @@
 package com.checkpoint.javacore.coursework.abonent;
 
 
+import java.util.Observable;
+import java.util.Observer;
+
 import com.checkpoint.javacore.coursework.network.Position;
 import com.checkpoint.javacore.coursework.networkoperator.NetworkOperator;
 import com.checkpoint.javacore.coursework.networkoperator.packages.MobilePackage;
 
-public class Abonent {
+public class Abonent implements Observer{
+	private int id;
 	private int number;
 	private NetworkOperator myOperator;
 	private PersonalAccaunt myAccaunt;
@@ -32,4 +36,24 @@ public class Abonent {
 	public Position getMyPosition(){
 		return myCurrentPosition;
 	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public MobilePackage getMobilePackage(){
+		return this.mobilePackage;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
 }

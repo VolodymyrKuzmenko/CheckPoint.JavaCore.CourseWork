@@ -7,6 +7,7 @@ import com.checkpoint.javacore.coursework.abonent.operations.OperationCommand;
 
 public class Ground {
 	private ArrayList<NetworkTower> towers = new ArrayList<NetworkTower>();
+	private ArrayList<Abonent> allAbonents = new ArrayList<Abonent>();
 	double minPos;
 	
 	
@@ -37,6 +38,9 @@ public class Ground {
 	}
 
 
+	
+	
+	
 	private boolean isCoverage(Position a, Position b, int range) {
 		minPos = Math.sqrt(Math.pow(a.x-b.x, 2)+Math.pow(a.y-b.y, 2));
 		if (range < minPos)

@@ -7,14 +7,13 @@ import com.checkpoint.javacore.coursework.networkoperator.tariffs.GlobalTariif;
 import com.checkpoint.javacore.coursework.networkoperator.tariffs.LocalTarif;
 import com.checkpoint.javacore.coursework.networkoperator.taxcalculation.TaxCalculatingStrategy;
 
-
 public class BasicPackage implements MobilePackage {
 	private int id;
 	private String name;
 	private LocalTarif localTarif;
 	private GlobalTariif globalTariif;
 	private HashMap<Integer, TaxCalculatingStrategy> abonentStrategys;
-	
+
 	public BasicPackage() {
 		// TODO Auto-generated constructor stub
 	}
@@ -23,7 +22,7 @@ public class BasicPackage implements MobilePackage {
 		this.name = name;
 		this.id = id;
 	}
-	
+
 	@Override
 	public int getId() {
 		return id;
@@ -51,14 +50,35 @@ public class BasicPackage implements MobilePackage {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	@Override
-	public int calculateCharge(int time, int abonentKey, int foreginOperator){
-		if (foreginOperator!=-1) {
-			return globalTariif.calculateMoneyPay(time, abonentStrategys.get(abonentKey), foreginOperator);
-		}else{
-			return localTarif.calculateMoneyPay(time, abonentStrategys.get(abonentKey));
-				
+	public int calculateCharge(int time, int abonentKey, int foreginOperator) {
+		if (foreginOperator != -1) {
+			return globalTariif.calculateMoneyPay(time,
+					abonentStrategys.get(abonentKey), foreginOperator);
+		} else {
+			return localTarif.calculateMoneyPay(time,
+					abonentStrategys.get(abonentKey));
 		}
+	}
+
+	@Override
+	public boolean isUseTariffById(int id) {
+
+		return globalTariif.getId() == id || localTarif.getId() == id;
+	}
+
+	@Override
+	public boolean isUseDiscountById(int id) {
+
+		return localTarif.isUseDiscountById(id)
+				|| globalTariif.isUseDiscountById(id);
+	}
+
+	@Override
+	public boolean isUseLicenseFeeById(int id) {
+		return localTarif.isUseLicenseFeeById(id)
+				|| globalTariif.isUseLicenseFeeById(id);
 	}
 
 }

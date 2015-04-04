@@ -11,5 +11,8 @@ public interface MobilePackage {
 	 MobilePackage setGlobalTariff(GlobalTariif tariffNew);
 	 Information getInformation(Class<Information> type);
 	 int calculateCharge(int time, int abonentKey, int foreginOperator);
-	
+	 boolean isUseTariffById(int id);
+	 boolean isUseDiscountById(int id);
+	 boolean isUseLicenseFeeById(int id);
+	 
 }
