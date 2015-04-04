@@ -51,8 +51,10 @@ private ArrayList<NetworkTower> towers = new ArrayList<NetworkTower>();
 
 	public MobilePackage buildMobilePackage(String name, int id,
 			GlobalTariif globalTariif, LocalTarif localTarif) {
-		return new BasicPackage(name, id).setGlobalTariff(globalTariif)
+		MobilePackage pack = new BasicPackage(name, id).setGlobalTariff(globalTariif)
 				.setLocalTariff(localTarif);
+		packages.add(pack);
+		return pack; 
 	}
 
 	public NetworkOperator buildNetworkOperator(Ground ground, int id) {

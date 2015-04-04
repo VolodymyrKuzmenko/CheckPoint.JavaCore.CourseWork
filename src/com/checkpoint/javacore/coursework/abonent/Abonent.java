@@ -8,6 +8,7 @@ import java.util.Scanner;
 import com.checkpoint.javacore.coursework.abonent.operations.ResupplyMoneyCommand;
 import com.checkpoint.javacore.coursework.abonent.operations.ResupplyOtherMoneyCommand;
 import com.checkpoint.javacore.coursework.abonent.operations.SentSMSMessageCommand;
+import com.checkpoint.javacore.coursework.abonent.operations.SwitchPackageCommand;
 import com.checkpoint.javacore.coursework.abonent.operations.TelephoneCallCommand;
 import com.checkpoint.javacore.coursework.network.Ground;
 import com.checkpoint.javacore.coursework.network.Position;
@@ -24,6 +25,8 @@ public class Abonent {
 	private Position myCurrentPosition;
 	private Scanner sc = new Scanner(System.in); 
 	private Ground ground;
+	private int newPackageId;
+	
 	
 	public Abonent(Ground ground, int id) {
 		this.ground = ground;
@@ -102,6 +105,9 @@ public class Abonent {
 		myAccaunt.transaction(mobilePackage.calculateCharge((int)timeMiles, id, idOperator));
 	}
 	
+	public void resetPackage(MobilePackage newPakage){
+		this.mobilePackage = newPakage;
+	}
 	
 	public void sentSMSmessage(String numberResiever){
 		String s = "simple sms masege form "+ Integer.toString(number); 
@@ -116,6 +122,11 @@ public class Abonent {
 		System.out.println(fromNumber +" to "+number+ ": "+ text);
 		
 	}
+	public void swithchPackage(int id){
+		newPackageId = id;
+		ground.makeTransaction(this, new SwitchPackageCommand(this).setNewPakageId(newPackageId).setResiever(myOperator.getSender()));
+	}
+	
 	public int getNetworkOperatorId(){
 		return myOperator.getOperatorId();
 	}

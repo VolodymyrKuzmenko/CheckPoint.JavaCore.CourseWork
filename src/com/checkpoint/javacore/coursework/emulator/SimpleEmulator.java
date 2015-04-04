@@ -25,7 +25,11 @@ public class SimpleEmulator {
 	factory.buildLocalTariff(1, "local1", factory.buildLicenseFee(5, 1, "fee1"));
 	GeneralTariff t = factory.buildLocalTariff(2, "local1", factory.buildLicenseFee(6, 2, "fee1"));
 	
+	GeneralTariff t2 = factory.buildLocalTariff(3, "local2", factory.buildLicenseFee(10, 2, "fee3"));
+	
 	MobilePackage p = factory.buildMobilePackage("simple package", 1,	(GlobalTariif) factory.buildGlobalTariff(10, "global1") ,(LocalTarif) t);
+	
+	MobilePackage p2 = factory.buildMobilePackage("simple package2", 4,	(GlobalTariif) factory.buildGlobalTariff(20, "global2") ,(LocalTarif) t2);
 	
 
 	factory.buildNetworkTower(10, 10);
@@ -54,7 +58,10 @@ public class SimpleEmulator {
 	
 	//ab.resuplyMoneyOtherUserCommand(50, "123678678");
 	
-	ab.sentSMSmessage("123678678");
+	//ab.sentSMSmessage("123678678");
+	
+	ab.swithchPackage(p2.getId());
+	
 
 	
 	}

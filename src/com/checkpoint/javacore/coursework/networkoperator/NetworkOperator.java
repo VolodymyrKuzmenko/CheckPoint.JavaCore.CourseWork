@@ -39,6 +39,15 @@ public class NetworkOperator {
 		
 	}
 	
+	public MobilePackage getPakageById(int packageId){
+		for (MobilePackage pack : mobilePackages) {
+			if(pack.getId()==packageId){
+				return pack;
+			}
+		}
+		return null;
+	}
+	
 	public void addAbonent(Abonent abonent){
 		this.abonents.add(abonent);
 	}
