@@ -11,11 +11,18 @@ public class TelephoneCallCommand implements OperationCommand {
 		long time = System.currentTimeMillis();
 		String message = null;
 		do{
-			 message= sender.sentPhoneCall();
+			 message= sender.sentPhoneCall().trim();
+			 if (message.contains("exit")){
+				 break;
+			 }else
 			resiver.resievePhoneCall(message);
-		}while (message!=null);
+		}while (true);
 		time =  System.currentTimeMillis()- time;
-		sender.getCharge(time, resiver.getNetworkOperatorId());
+		int foreginKy =resiver.getNetworkOperatorId();
+		if (foreginKy == sender.getNetworkOperatorId()){
+			foreginKy =-1;
+		}
+		sender.getCharge(time, foreginKy );
 	}
 	@Override
 	public int getResieverId() {

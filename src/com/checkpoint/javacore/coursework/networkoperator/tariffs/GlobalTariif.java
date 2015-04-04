@@ -15,6 +15,7 @@ public class GlobalTariif extends GeneralTariff {
 	
 //id стороннього оператора, куда дзвонитиму
 	public int calculateMoneyPay(int timeCall, TaxCalculatingStrategy strategy, int idOperator){
+		strategy = strategy.addDiscount(discounts).addLicenseFee(licenseFee);
 		if(strategy.isLinked()){
 			strategy.addPeriodTime(timeCall);
 			return strategy.calculate();			
@@ -22,6 +23,8 @@ public class GlobalTariif extends GeneralTariff {
 			strategy.addDiscount(discounts);
 			strategy.addLicenseFee(licenseFee);
 			strategy.addForeginOperatorValue(myOperator.getForeginGlobalTariffValueByIdForeginOperator(idOperator));
+			strategy.addPeriodTime(timeCall);
+			
 			return strategy.calculate();
 			
 		}

@@ -13,7 +13,7 @@ import com.checkpoint.javacore.coursework.networkoperator.tariffs.GlobalTariif;
 
 public class NetworkOperator {
 	private int operatorId;
-	private ArrayList<NetworkOperator> networkOperators;
+	private ArrayList<NetworkOperator> networkOperators = new ArrayList<>();
 	private MobilePackage [] mobilePackages;
 	private LicenseFee [] licenseFees;
 	private Discount [] discounts;
@@ -74,7 +74,7 @@ public class NetworkOperator {
 				}
 
 		}
-		return -1;
+		return 0;
 	}
 
 	public void setMyGlobalIdTariffId(int globalIdTariffid) {

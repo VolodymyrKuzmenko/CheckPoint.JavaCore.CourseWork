@@ -1,5 +1,8 @@
 package com.checkpoint.javacore.coursework.networkoperator.taxcalculation;
 
+import com.checkpoint.javacore.coursework.networkoperator.packages.MobilePackage;
+import com.checkpoint.javacore.coursework.networkoperator.tariffs.GeneralTariff;
+
 public class StrategyCalculationPool {
 	@SuppressWarnings("rawtypes")
 	private static Class [] strategys = {CurrentNumberCallsStrategy.class, OnePayForThirtyDayStrategy.class, TaxPerMinutesStrategy.class};

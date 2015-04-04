@@ -11,6 +11,7 @@ public class LocalTarif extends GeneralTariff {
 	}
 	
 	public int calculateMoneyPay(int timeCall, TaxCalculatingStrategy strategy){
+		strategy = strategy.addDiscount(discounts).addLicenseFee(licenseFee);
 		if(strategy.isLinked()){
 			strategy.addPeriodTime(timeCall);
 			return strategy.calculate();			
@@ -18,6 +19,7 @@ public class LocalTarif extends GeneralTariff {
 			strategy.addDiscount(discounts);
 			strategy.addLicenseFee(licenseFee);
 			strategy.addForeginOperatorValue(0);
+			strategy.addPeriodTime(timeCall);
 			return strategy.calculate();
 			
 		}

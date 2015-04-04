@@ -6,6 +6,7 @@ import com.checkpoint.javacore.coursework.networkoperator.licenses.LicenseFee;
 public class GeneralTariff {
 	private int id;
 	protected Discount[] discounts;
+	
 	protected LicenseFee licenseFee;
 	protected String name;
 
@@ -43,4 +44,13 @@ public class GeneralTariff {
 		else
 			return false;
 	}
+	
+	public LicenseFee getLicenseFee() {
+		return licenseFee;
+	}
+	public Discount[] getDiscounts() {
+		return discounts;
+	}
+
+
 }

@@ -23,4 +23,8 @@ public class PersonalAccaunt {
 	public int getAcauntId(){
 		return acauntId;
 	}
+	
+	public int getBalance(){
+		return balance;
+	}
 }

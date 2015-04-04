@@ -5,15 +5,18 @@ import java.util.HashMap;
 import com.checkpoint.javacore.coursework.abonent.Information;
 import com.checkpoint.javacore.coursework.networkoperator.tariffs.GlobalTariif;
 import com.checkpoint.javacore.coursework.networkoperator.tariffs.LocalTarif;
+import com.checkpoint.javacore.coursework.networkoperator.taxcalculation.StrategyCalculationPool;
 import com.checkpoint.javacore.coursework.networkoperator.taxcalculation.TaxCalculatingStrategy;
+import com.checkpoint.javacore.coursework.networkoperator.taxcalculation.TaxPerMinutesStrategy;
 
 public class BasicPackage implements MobilePackage {
 	private int id;
 	private String name;
 	private LocalTarif localTarif;
 	private GlobalTariif globalTariif;
-	private HashMap<Integer, TaxCalculatingStrategy> abonentStrategys;
-
+	private HashMap<Integer, TaxCalculatingStrategy> abonentStrategys = new HashMap<Integer, TaxCalculatingStrategy>();
+	
+	
 	public BasicPackage() {
 		// TODO Auto-generated constructor stub
 	}
@@ -53,12 +56,16 @@ public class BasicPackage implements MobilePackage {
 
 	@Override
 	public int calculateCharge(int time, int abonentKey, int foreginOperator) {
+		if(!abonentStrategys.containsKey(new Integer(abonentKey))){
+			
+			abonentStrategys.put(abonentKey, StrategyCalculationPool.getStrategy(TaxPerMinutesStrategy.class));
+		}
 		if (foreginOperator != -1) {
 			return globalTariif.calculateMoneyPay(time,
-					abonentStrategys.get(abonentKey), foreginOperator);
+					abonentStrategys.get(new Integer(abonentKey)), foreginOperator);
 		} else {
 			return localTarif.calculateMoneyPay(time,
-					abonentStrategys.get(abonentKey));
+					abonentStrategys.get(new Integer(abonentKey)));
 		}
 	}
 

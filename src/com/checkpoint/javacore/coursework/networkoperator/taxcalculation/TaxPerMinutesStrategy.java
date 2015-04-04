@@ -33,8 +33,7 @@ public class TaxPerMinutesStrategy  extends CommonStrategy implements TaxCalcula
 	@SuppressWarnings("deprecation")
 	@Override
 	public int calculate() {
-		
-		return (foreginOperatorValue+fee.getLicenseFee()+ calculateDiscountValue())*getDateCalls().getMinutes();
+		return (foreginOperatorValue+fee.getLicenseFee()- calculateDiscountValue())*getDateCalls().getMinutes()*-1;
 	}
 
 	

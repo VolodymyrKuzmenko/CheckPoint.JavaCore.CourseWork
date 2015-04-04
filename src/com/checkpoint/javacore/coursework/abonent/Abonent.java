@@ -5,6 +5,8 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Scanner;
 
+import com.checkpoint.javacore.coursework.abonent.operations.TelephoneCallCommand;
+import com.checkpoint.javacore.coursework.network.Ground;
 import com.checkpoint.javacore.coursework.network.Position;
 import com.checkpoint.javacore.coursework.networkoperator.NetworkOperator;
 import com.checkpoint.javacore.coursework.networkoperator.packages.MobilePackage;
@@ -18,7 +20,11 @@ public class Abonent {
 	private MobilePackage mobilePackage;
 	private Position myCurrentPosition;
 	private Scanner sc = new Scanner(System.in); 
+	private Ground ground;
 	
+	public Abonent(Ground ground, int id) {
+		this.ground = ground;
+	}
 	
 	public Abonent linkNumber(String number){
 		this.number = Integer.parseInt(number.replaceAll("[+()-]", ""));
@@ -34,6 +40,18 @@ public class Abonent {
 	public Abonent linkMobilePackage(MobilePackage package1){
 		this.mobilePackage = package1;
 		return this;
+	}
+	public Abonent linkPersonalAcaunt(int balance, int id){
+		this.myAccaunt = new PersonalAccaunt(balance, id);
+		return this;
+	}
+	
+	public Abonent linkAbonentPosition(int x, int y){
+		myCurrentPosition = new Position(x, y);
+		return this;
+	}
+	public int getBalans(){
+		return myAccaunt.getBalance();
 	}
 	
 	public Position getMyPosition(){
@@ -59,11 +77,16 @@ public class Abonent {
 	public String sentPhoneCall(){
 		return sc.nextLine();
 	}
+
+	public void tryMakeCall(Abonent resiever) {
+		ground.makeTransaction(this, new TelephoneCallCommand().addResiever(resiever).addSender(this));
+	}
 	
 	public void resievePhoneCall(String meaage){
-		System.out.println(number + ": " + meaage);
+		System.out.println(number + " says: " + new StringBuilder(meaage).reverse());
 	}
 	public void getCharge(long timeMiles, int idOperator){
+		
 		myAccaunt.transaction(mobilePackage.calculateCharge((int)timeMiles, id, idOperator));
 	}
 	

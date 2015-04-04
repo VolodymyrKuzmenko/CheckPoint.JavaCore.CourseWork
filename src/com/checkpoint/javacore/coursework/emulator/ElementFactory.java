@@ -3,6 +3,8 @@ package com.checkpoint.javacore.coursework.emulator;
 import java.util.ArrayList;
 
 import com.checkpoint.javacore.coursework.network.Ground;
+import com.checkpoint.javacore.coursework.network.NetworkTower;
+import com.checkpoint.javacore.coursework.network.Position;
 import com.checkpoint.javacore.coursework.networkoperator.NetworkOperator;
 import com.checkpoint.javacore.coursework.networkoperator.discoints.BasicDiscount;
 import com.checkpoint.javacore.coursework.networkoperator.discoints.Discount;
@@ -18,9 +20,11 @@ public class ElementFactory {
 	private NetworkOperator operator = new NetworkOperator();
 	private ArrayList<LicenseFee> licenseFees = new ArrayList<LicenseFee>();
 	private ArrayList<Discount> discounts = new ArrayList<Discount>();
-	private ArrayList<GlobalTariif> globalTariifs = new ArrayList<GlobalTariif>();
+	private ArrayList<GlobalTariif> globalTarifs = new ArrayList<GlobalTariif>();
 	private ArrayList<MobilePackage> packages = new ArrayList<MobilePackage>();
 private ArrayList<LocalTarif> localTarifs = new ArrayList<LocalTarif>();
+
+private ArrayList<NetworkTower> towers = new ArrayList<NetworkTower>();
 	
 	public LicenseFee buildLicenseFee(int value, int id, String name) {
 		licenseFees.add(new BasicLicenseFee(value, id, name));
@@ -33,14 +37,16 @@ private ArrayList<LocalTarif> localTarifs = new ArrayList<LocalTarif>();
 	}
 
 	public GeneralTariff buildGlobalTariff(int id, String name) {
-		globalTariifs.add(new GlobalTariif(operator, id, name));
-		return globalTariifs.get(globalTariifs.size() - 1);
+		globalTarifs.add(new GlobalTariif(operator, id, name));
+		globalTarifs.get(0).linkDiscounts(discounts.get(0)).setLicenseFee(licenseFees.get(1));
+		return globalTarifs.get(globalTarifs.size() - 1);
 	}
 
 	public GeneralTariff buildLocalTariff(int id, String name,
 			LicenseFee licenseFee) {
 		localTarifs.add(new LocalTarif(licenseFee, id, name));
-		return localTarifs.get(licenseFees.size()-1);
+		localTarifs.get(localTarifs.size()-1).linkDiscounts(discounts.get(0));
+		return localTarifs.get(localTarifs.size()-1);
 	}
 
 	public MobilePackage buildMobilePackage(String name, int id,
@@ -58,13 +64,13 @@ private ArrayList<LocalTarif> localTarifs = new ArrayList<LocalTarif>();
 		packagesN = packages.toArray(packagesN);
 		
 		ArrayList<GeneralTariff> generalTariffs = new ArrayList<GeneralTariff>();
-		generalTariffs.addAll(globalTariifs);
+		generalTariffs.addAll(globalTarifs);
 		generalTariffs.addAll(localTarifs);
 		
 		GeneralTariff [] generalTariffsN = new GeneralTariff[generalTariffs.size()-1];
 		generalTariffsN = generalTariffs.toArray(generalTariffsN);
 		
-		operator.setMyGlobalIdTariffId(globalTariifs.get(0).getId());
+		operator.setMyGlobalIdTariffId(globalTarifs.get(0).getId());
 		
 		return operator.addDiscounts(discountsN)
 				.addGround(ground)
@@ -75,4 +81,18 @@ private ArrayList<LocalTarif> localTarifs = new ArrayList<LocalTarif>();
 				.addTariffs(generalTariffsN);
 
 	}
+	
+	public NetworkTower buildNetworkTower(int x, int y){
+		towers.add(new NetworkTower(5, 50, new Position(x,y)));
+		return towers.get(towers.size()-1);
+	}
+	
+	public Ground buildGround(){
+		NetworkTower [] towersN = new NetworkTower[towers.size()];
+		towersN = towers.toArray(towersN);
+		Ground ground = new Ground();
+		ground.addTower(towersN);
+		return ground;
+	}
+	
 }
