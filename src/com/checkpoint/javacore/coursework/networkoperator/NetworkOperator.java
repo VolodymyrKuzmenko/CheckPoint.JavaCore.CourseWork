@@ -4,12 +4,22 @@ import java.util.ArrayList;
 
 
 
+
+
+
+
+
+import com.checkpoint.javacore.coursework.abonent.Abonent;
+import com.checkpoint.javacore.coursework.abonent.PersonalAccaunt;
+import com.checkpoint.javacore.coursework.alertsystem.NetworkOperatorSender;
 import com.checkpoint.javacore.coursework.network.Ground;
+import com.checkpoint.javacore.coursework.network.NetworkTower;
 import com.checkpoint.javacore.coursework.networkoperator.discoints.Discount;
 import com.checkpoint.javacore.coursework.networkoperator.licenses.LicenseFee;
 import com.checkpoint.javacore.coursework.networkoperator.packages.MobilePackage;
 import com.checkpoint.javacore.coursework.networkoperator.tariffs.GeneralTariff;
 import com.checkpoint.javacore.coursework.networkoperator.tariffs.GlobalTariif;
+import com.sun.org.apache.bcel.internal.generic.NEWARRAY;
 
 public class NetworkOperator {
 	private int operatorId;
@@ -20,11 +30,23 @@ public class NetworkOperator {
 	private GeneralTariff [] tariffs;
 	private String operatorNumberCode;
 	private Ground ground;
+	private ArrayList<PersonalAccaunt> accaunts = new ArrayList<PersonalAccaunt>();
+	private ArrayList<Abonent> abonents = new ArrayList<Abonent>();
+	private NetworkOperatorSender sender;
+	
+	
+	public NetworkOperator() {
+		
+	}
 	
 	
 	public NetworkOperator addMobilePackages(MobilePackage...packages){
 		this.mobilePackages = packages;
 		return this;
+	}
+	
+	public void addPersonalAccaunt(PersonalAccaunt accaunt){
+		accaunts.add(accaunt);
 	}
 	
 	public NetworkOperator addLicenceFee(LicenseFee...licenceFee){
@@ -41,8 +63,9 @@ public class NetworkOperator {
 		this.tariffs = tariffs;
 		return this;
 	}
-	public NetworkOperator addGround(Ground ground){
+	public NetworkOperator addGround(Ground ground, NetworkTower mainTowwer){
 		this.ground = ground;
+		setSender(new NetworkOperatorSender(this, abonents, ground, mainTowwer));
 		return this;
 	}
 	public NetworkOperator addOperatorId(int id){
@@ -93,6 +116,25 @@ public class NetworkOperator {
 	
 	public Ground getGround() {
 		return ground;
+	}
+	
+	public PersonalAccaunt getAcauntById(int id){
+		for (PersonalAccaunt personalAccaunt : accaunts) {
+			if (personalAccaunt.getAcauntId() == id){
+				return personalAccaunt;
+			}
+		}
+		return null;
+	}
+
+
+	public NetworkOperatorSender getSender() {
+		return sender;
+	}
+
+
+	private void setSender(NetworkOperatorSender sender) {
+		this.sender = sender;
 	}
 	
 	

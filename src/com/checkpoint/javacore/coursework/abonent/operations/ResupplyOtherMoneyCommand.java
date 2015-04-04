@@ -1,5 +1,7 @@
 package com.checkpoint.javacore.coursework.abonent.operations;
 
+import com.checkpoint.javacore.coursework.abonent.Abonent;
+
 public class ResupplyOtherMoneyCommand implements OperationCommand {
 
 	@Override
@@ -13,6 +15,13 @@ public class ResupplyOtherMoneyCommand implements OperationCommand {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public OperationCommand setResiever(Abonent abonent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	
 

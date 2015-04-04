@@ -73,7 +73,7 @@ private ArrayList<NetworkTower> towers = new ArrayList<NetworkTower>();
 		operator.setMyGlobalIdTariffId(globalTarifs.get(0).getId());
 		
 		return operator.addDiscounts(discountsN)
-				.addGround(ground)
+				.addGround(ground, towers.get(0))
 				.addLicenceFee(licenseFeesN)
 				.addMobilePackages(packagesN)
 				.addOperatorId(id)

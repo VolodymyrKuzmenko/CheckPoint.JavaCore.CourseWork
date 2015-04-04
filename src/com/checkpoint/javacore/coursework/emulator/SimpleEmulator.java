@@ -34,15 +34,22 @@ public class SimpleEmulator {
 	factory.buildNetworkTower(50, 100);
 	factory.buildNetworkTower(100, 100);
 	factory.buildNetworkTower(100, 50);
+	
 	Ground g = factory.buildGround();
 	
 	NetworkOperator operator = factory.buildNetworkOperator(g, 1);
+	
+	
 	
 	Abonent ab = new Abonent(g,1).linkMobilePackage(p).linkOperator(operator).linkNumber("234234").linkPersonalAcaunt(500, 1).linkAbonentPosition(100, 100);
 	
 	Abonent ba = new Abonent(g,2).linkMobilePackage(p).linkOperator(operator).linkNumber("678678").linkPersonalAcaunt(500, 2).linkAbonentPosition(80, 80);
 	
+
+	
 	ab.tryMakeCall(ba);
+	
+	ab.resuplyMoneyCommand(100);
 	
 	
 

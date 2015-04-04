@@ -1,5 +1,7 @@
 package com.checkpoint.javacore.coursework.abonent.operations;
 
+import com.checkpoint.javacore.coursework.abonent.Abonent;
+
 public class LinkInternetCommand implements OperationCommand {
 
 	@Override
@@ -12,6 +14,13 @@ public class LinkInternetCommand implements OperationCommand {
 	public int getResieverId() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+
+	@Override
+	public OperationCommand setResiever(Abonent abonent) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

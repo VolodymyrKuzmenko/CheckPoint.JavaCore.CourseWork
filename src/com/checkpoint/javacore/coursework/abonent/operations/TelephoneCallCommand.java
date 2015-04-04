@@ -29,16 +29,16 @@ public class TelephoneCallCommand implements OperationCommand {
 		return resiver.getId();
 	}
 	
-	public TelephoneCallCommand addResiever(Abonent abonent){
-		resiver = abonent;
-		return this;
-	}
 	public TelephoneCallCommand addSender(Abonent abonent){
 		sender = abonent;
 		return this;
 	}
-	
-	
+	@Override
+	public OperationCommand setResiever(Abonent abonent) {
+		resiver = abonent;
+		return this;
+	}
+
 	
 	
 

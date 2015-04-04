@@ -5,6 +5,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Scanner;
 
+import com.checkpoint.javacore.coursework.abonent.operations.ResupplyMoneyCommand;
 import com.checkpoint.javacore.coursework.abonent.operations.TelephoneCallCommand;
 import com.checkpoint.javacore.coursework.network.Ground;
 import com.checkpoint.javacore.coursework.network.Position;
@@ -43,6 +44,7 @@ public class Abonent {
 	}
 	public Abonent linkPersonalAcaunt(int balance, int id){
 		this.myAccaunt = new PersonalAccaunt(balance, id);
+		myOperator.addPersonalAccaunt(myAccaunt);
 		return this;
 	}
 	
@@ -79,7 +81,11 @@ public class Abonent {
 	}
 
 	public void tryMakeCall(Abonent resiever) {
-		ground.makeTransaction(this, new TelephoneCallCommand().addResiever(resiever).addSender(this));
+		ground.makeTransaction(this, new TelephoneCallCommand().addSender(this).setResiever(resiever));
+	}
+	
+	public void resuplyMoneyCommand(int value){
+		ground.makeTransaction(this, new ResupplyMoneyCommand(this).addResieverValue(value).setResiever(myOperator.getSender()));
 	}
 	
 	public void resievePhoneCall(String meaage){
@@ -90,8 +96,20 @@ public class Abonent {
 		myAccaunt.transaction(mobilePackage.calculateCharge((int)timeMiles, id, idOperator));
 	}
 	
+	public void receiveMessageFromOperator(String text){
+		System.out.println("Operator: "+ text);
+	}
+	
 	public int getNetworkOperatorId(){
 		return myOperator.getOperatorId();
+	}
+	
+	public NetworkOperator getNetworkOperator(){
+		return myOperator;
+	}
+	
+	public int getBalansId(){
+		return myAccaunt.getAcauntId();
 	}
 	
 }
