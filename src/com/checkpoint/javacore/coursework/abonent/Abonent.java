@@ -6,6 +6,7 @@ import java.util.Observer;
 import java.util.Scanner;
 
 import com.checkpoint.javacore.coursework.abonent.operations.ResupplyMoneyCommand;
+import com.checkpoint.javacore.coursework.abonent.operations.ResupplyOtherMoneyCommand;
 import com.checkpoint.javacore.coursework.abonent.operations.TelephoneCallCommand;
 import com.checkpoint.javacore.coursework.network.Ground;
 import com.checkpoint.javacore.coursework.network.Position;
@@ -25,16 +26,16 @@ public class Abonent {
 	
 	public Abonent(Ground ground, int id) {
 		this.ground = ground;
+		this.id = id;
 	}
 	
 	public Abonent linkNumber(String number){
-		this.number = Integer.parseInt(number.replaceAll("[+()-]", ""));
+		this.number = Integer.parseInt(myOperator.getOperatorNumberCode()+number.replaceAll("[+()-]", ""));
 		return this;
 	}
 	
 	public Abonent linkOperator(NetworkOperator operator){
 		this.myOperator = operator;
-		number = Integer.parseInt(myOperator.getOperatorNumberCode().concat(Integer.toString(number)));
 		return this;
 	}
 	
@@ -88,6 +89,10 @@ public class Abonent {
 		ground.makeTransaction(this, new ResupplyMoneyCommand(this).addResieverValue(value).setResiever(myOperator.getSender()));
 	}
 	
+	public void resuplyMoneyOtherUserCommand(int value, String number){
+		ground.makeTransaction(this, new ResupplyOtherMoneyCommand(this, number, value).setResiever(myOperator.getSender()));
+	}
+	
 	public void resievePhoneCall(String meaage){
 		System.out.println(number + " says: " + new StringBuilder(meaage).reverse());
 	}
@@ -97,7 +102,7 @@ public class Abonent {
 	}
 	
 	public void receiveMessageFromOperator(String text){
-		System.out.println("Operator: "+ text);
+		System.out.println("Operator to "+number+ ": "+ text);
 	}
 	
 	public int getNetworkOperatorId(){
@@ -111,5 +116,12 @@ public class Abonent {
 	public int getBalansId(){
 		return myAccaunt.getAcauntId();
 	}
+	 public void decreaseMoney(int value){
+		 myAccaunt.transaction(value*-1);
+	 }
+	 public boolean checkMyBalanse(int value){
+		 return myAccaunt.checkBalanse(value*-1);
+	 }
+	 
 	
 }

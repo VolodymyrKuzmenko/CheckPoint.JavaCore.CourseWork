@@ -45,13 +45,14 @@ public class SimpleEmulator {
 	
 	Abonent ba = new Abonent(g,2).linkMobilePackage(p).linkOperator(operator).linkNumber("678678").linkPersonalAcaunt(500, 2).linkAbonentPosition(80, 80);
 	
-
+	operator.addAbonent(ab);
+	operator.addAbonent(ba);
 	
-	ab.tryMakeCall(ba);
+//	ab.tryMakeCall(ba);
 	
-	ab.resuplyMoneyCommand(100);
+	//ab.resuplyMoneyCommand(100);
 	
-	
+	ab.resuplyMoneyOtherUserCommand(50, "123678678");
 
 	
 	}

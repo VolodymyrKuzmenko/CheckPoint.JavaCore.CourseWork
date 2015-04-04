@@ -39,6 +39,9 @@ public class NetworkOperator {
 		
 	}
 	
+	public void addAbonent(Abonent abonent){
+		this.abonents.add(abonent);
+	}
 	
 	public NetworkOperator addMobilePackages(MobilePackage...packages){
 		this.mobilePackages = packages;

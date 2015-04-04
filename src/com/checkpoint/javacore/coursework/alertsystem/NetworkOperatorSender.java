@@ -13,6 +13,7 @@ public class NetworkOperatorSender extends Abonent{
 	private NetworkOperator operator;
 	private ArrayList<Abonent> abonents;
 	
+	
 	public NetworkOperatorSender(NetworkOperator operator, ArrayList<Abonent> abonents, Ground ground, NetworkTower mainTower) {
 		super(ground, operator.getOperatorId());
 		Position p = mainTower.getMyPosition();
@@ -51,5 +52,22 @@ public class NetworkOperatorSender extends Abonent{
 			if(abonent.getMobilePackage().isUseLicenseFeeById(licenseFeeId))
 				this.singleSending(command);
 		}
+	}
+	
+	public Abonent getAbonentByNumber(String number){
+		int searchNumb = Integer.parseInt(number.replaceAll("[+()-]", ""));
+		for (Abonent abonent : abonents) {
+			if(abonent.getNumber()==searchNumb){
+				return abonent;
+			}
+		}
+		
+		return null;
+	}
+	
+	
+	@Override
+	public int getNetworkOperatorId(){
+		return operator.getOperatorId();
 	}
 }
