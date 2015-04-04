@@ -18,10 +18,42 @@ public class NetworkOperator {
 	private LicenseFee [] licenseFees;
 	private Discount [] discounts;
 	private GeneralTariff [] tariffs;
-	private int countGlobalTariffs;
-	private int countLocalTariffs;
 	private String operatorNumberCode;
 	private Ground ground;
+	
+	
+	public NetworkOperator addMobilePackages(MobilePackage...packages){
+		this.mobilePackages = packages;
+		return this;
+	}
+	
+	public NetworkOperator addLicenceFee(LicenseFee...licenceFee){
+		this.licenseFees = licenceFee;
+		return this;
+	}
+	
+	public NetworkOperator addDiscounts(Discount...discounts){
+		this.discounts = discounts;
+		return this;
+	}
+	
+	public NetworkOperator addTariffs(GeneralTariff...tariffs){
+		this.tariffs = tariffs;
+		return this;
+	}
+	public NetworkOperator addGround(Ground ground){
+		this.ground = ground;
+		return this;
+	}
+	public NetworkOperator addOperatorId(int id){
+		this.operatorId = id;
+		return this;
+	}
+	
+	public NetworkOperator addOperatorNumberCode(String code){
+		this.operatorNumberCode = code;
+		return this;
+	}
 	
 	
 	private int globalIdTariffId;
@@ -58,14 +90,10 @@ public class NetworkOperator {
 	public String getOperatorNumberCode() {
 		return operatorNumberCode;
 	}
-	public void setOperatorNumberCode(String operatorNumberCode) {
-		this.operatorNumberCode = operatorNumberCode;
-	}
+	
 	public Ground getGround() {
 		return ground;
 	}
-	public void setGround(Ground ground) {
-		this.ground = ground;
-	}
+	
 	
 }

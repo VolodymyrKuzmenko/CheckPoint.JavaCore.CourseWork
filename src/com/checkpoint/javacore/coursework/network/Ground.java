@@ -17,6 +17,10 @@ public class Ground {
 		}
 	}
 	
+	public void addAbonents(ArrayList<Abonent> abonents){
+		allAbonents.addAll(abonents);
+	}
+	
 	
 	public void makeTransaction(Abonent abonent, OperationCommand command){
 		findNetworkTower(abonent, command.getResieverId()).AcceptTransaction(command);
