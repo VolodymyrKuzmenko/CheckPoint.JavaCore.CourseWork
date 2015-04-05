@@ -1,5 +1,8 @@
 package com.checkpoint.javacore.coursework.networkoperator.discoints;
 
+import com.checkpoint.javacore.coursework.abonent.AbonentInformation;
+import com.checkpoint.javacore.coursework.abonent.Information;
+
 public class BasicDiscount implements Discount {
 	private int id;
 	private int value;
@@ -33,6 +36,11 @@ public class BasicDiscount implements Discount {
 	@Override
 	public String getName() {
 		return this.name;
+	}
+
+	@Override
+	public Information getInformation() {
+		return new AbonentInformation().addDiscountsInformation(name, value);
 	}
 
 }

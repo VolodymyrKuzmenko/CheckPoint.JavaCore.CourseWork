@@ -1,26 +1,37 @@
 package com.checkpoint.javacore.coursework.abonent.operations;
 
 import com.checkpoint.javacore.coursework.abonent.Abonent;
+import com.checkpoint.javacore.coursework.networkoperator.NetworkOperator;
+import com.checkpoint.javacore.coursework.networkoperator.operations.OperationResultCommand;
 
 public class MyMobilePackageInformationCommand implements OperationCommand {
-
+	private Abonent resiever;
+	private Abonent sender;
+	
+	public MyMobilePackageInformationCommand(Abonent sender) {
+		this.sender = sender;
+	}
+	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		
+		NetworkOperator operator = sender.getNetworkOperator();
+		String information = sender.getMobilePackage().getInformation().buildInformation();
+		OperationResultCommand command =(OperationResultCommand) new OperationResultCommand(operator.getSender()).addMessage("Abonent information:\n"+information).setResiever(sender);
+		operator.getSender().singleSending(command);
 	}
 
 	@Override
 	public int getResieverId() {
-		// TODO Auto-generated method stub
-		return 0;
+		return resiever.getId();
 	}
 
 	@Override
 	public OperationCommand setResiever(Abonent abonent) {
-		// TODO Auto-generated method stub
-		return null;
+		this.resiever = abonent;
+		return this;
 	}
+	
+	
 
 	
 

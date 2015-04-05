@@ -5,7 +5,7 @@ import com.checkpoint.javacore.coursework.networkoperator.licenses.LicenseFee;
 
 public class CurrentNumberCallsStrategy extends CommonStrategy implements TaxCalculatingStrategy  {
 	private int numberCalls = 0;
-	
+	public final String name ="pay number calls";
 	@Override
 	public TaxCalculatingStrategy addPeriodTime(long time) {
 		super.addPeriodTime(time);
@@ -49,6 +49,12 @@ public class CurrentNumberCallsStrategy extends CommonStrategy implements TaxCal
 	public TaxCalculatingStrategy removeLinks() {
 		
 		return this;
+	}
+
+	@Override
+	public String getDescription() {
+		
+		return this.name;
 	}
 	
 

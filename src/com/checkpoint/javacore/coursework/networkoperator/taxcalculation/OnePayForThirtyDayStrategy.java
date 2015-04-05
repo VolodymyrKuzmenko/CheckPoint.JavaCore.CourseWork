@@ -5,6 +5,7 @@ import com.checkpoint.javacore.coursework.networkoperator.licenses.LicenseFee;
 
 public class OnePayForThirtyDayStrategy extends CommonStrategy implements TaxCalculatingStrategy {
 	private int price;
+	public final String name ="pay for thirty days";
 	@Override
 	public TaxCalculatingStrategy addPeriodTime(long time) {
 		super.addPeriodTime(time);
@@ -44,6 +45,10 @@ public class OnePayForThirtyDayStrategy extends CommonStrategy implements TaxCal
 	public void priceForThirtyDays(int value){
 		this.price = value;
 	}
-	
+	@Override
+	public String getDescription() {
+		
+		return this.name;
+	}
 
 }

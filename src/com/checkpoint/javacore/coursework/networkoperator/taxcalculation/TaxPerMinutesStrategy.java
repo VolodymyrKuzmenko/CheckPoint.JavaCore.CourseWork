@@ -5,6 +5,8 @@ import com.checkpoint.javacore.coursework.networkoperator.discoints.Discount;
 import com.checkpoint.javacore.coursework.networkoperator.licenses.LicenseFee;
 
 public class TaxPerMinutesStrategy  extends CommonStrategy implements TaxCalculatingStrategy {
+	public final String name ="pay for minutes";
+	
 	
 	@Override
 	public TaxCalculatingStrategy addPeriodTime(long time) {
@@ -35,7 +37,11 @@ public class TaxPerMinutesStrategy  extends CommonStrategy implements TaxCalcula
 	public int calculate() {
 		return (foreginOperatorValue+fee.getLicenseFee()- calculateDiscountValue())*getDateCalls().getMinutes()*-1;
 	}
-
+	@Override
+	public String getDescription() {
+		
+		return this.name;
+	}
 	
 
 	

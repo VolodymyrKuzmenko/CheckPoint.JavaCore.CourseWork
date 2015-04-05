@@ -149,5 +149,9 @@ public class NetworkOperator {
 		this.sender = sender;
 	}
 	
+	public MobilePackage [] getAvaiblePackages(){
+		return this.mobilePackages;
+	}
+	
 	
 }

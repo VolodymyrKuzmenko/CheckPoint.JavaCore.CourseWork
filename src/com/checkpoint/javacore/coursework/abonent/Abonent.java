@@ -1,10 +1,9 @@
 package com.checkpoint.javacore.coursework.abonent;
 
-
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Scanner;
 
+import com.checkpoint.javacore.coursework.abonent.operations.GetAvaiblePackages;
+import com.checkpoint.javacore.coursework.abonent.operations.MyMobilePackageInformationCommand;
 import com.checkpoint.javacore.coursework.abonent.operations.ResupplyMoneyCommand;
 import com.checkpoint.javacore.coursework.abonent.operations.ResupplyOtherMoneyCommand;
 import com.checkpoint.javacore.coursework.abonent.operations.SentSMSMessageCommand;
@@ -134,7 +133,12 @@ public class Abonent {
 	public NetworkOperator getNetworkOperator(){
 		return myOperator;
 	}
-	
+	public void getMyInformation(){
+		ground.makeTransaction(this, new MyMobilePackageInformationCommand(this).setResiever(myOperator.getSender()));
+	}
+	public void getAvaiblePackages(){
+		ground.makeTransaction(this, new GetAvaiblePackages(this).setResiever(myOperator.getSender()));
+	}
 	public int getBalansId(){
 		return myAccaunt.getAcauntId();
 	}

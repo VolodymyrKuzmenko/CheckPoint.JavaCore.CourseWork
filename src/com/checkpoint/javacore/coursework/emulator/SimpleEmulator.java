@@ -14,7 +14,7 @@ public class SimpleEmulator {
 	public static void main(String[] args) {
 	ElementFactory factory = new ElementFactory();
 	
-	LicenseFee fee3 = factory.buildLicenseFee(7, 3, "fee3");
+	
 	
 	
 	factory.buildDiscount(-2, 1, "descount1");
@@ -52,15 +52,19 @@ public class SimpleEmulator {
 	operator.addAbonent(ab);
 	operator.addAbonent(ba);
 	
-//	ab.tryMakeCall(ba);
+	ba.tryMakeCall(ab);
 	
-	//ab.resuplyMoneyCommand(100);
+	ab.resuplyMoneyCommand(100);
 	
-	//ab.resuplyMoneyOtherUserCommand(50, "123678678");
+	ab.resuplyMoneyOtherUserCommand(50, "123678678");
 	
-	//ab.sentSMSmessage("123678678");
+	ab.sentSMSmessage("123678678");
 	
 	ab.swithchPackage(p2.getId());
+	
+	ab.getMyInformation();
+	
+	ab.getAvaiblePackages();
 	
 
 	

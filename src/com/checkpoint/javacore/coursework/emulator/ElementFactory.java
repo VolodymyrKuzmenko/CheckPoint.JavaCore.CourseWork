@@ -15,6 +15,7 @@ import com.checkpoint.javacore.coursework.networkoperator.packages.MobilePackage
 import com.checkpoint.javacore.coursework.networkoperator.tariffs.GeneralTariff;
 import com.checkpoint.javacore.coursework.networkoperator.tariffs.GlobalTariif;
 import com.checkpoint.javacore.coursework.networkoperator.tariffs.LocalTarif;
+import com.checkpoint.javacore.coursework.networkoperator.taxcalculation.TaxPerMinutesStrategy;
 
 public class ElementFactory {
 	private NetworkOperator operator = new NetworkOperator();
@@ -51,7 +52,7 @@ private ArrayList<NetworkTower> towers = new ArrayList<NetworkTower>();
 
 	public MobilePackage buildMobilePackage(String name, int id,
 			GlobalTariif globalTariif, LocalTarif localTarif) {
-		MobilePackage pack = new BasicPackage(name, id).setGlobalTariff(globalTariif)
+		MobilePackage pack = new BasicPackage(name, id, TaxPerMinutesStrategy.class).setGlobalTariff(globalTariif)
 				.setLocalTariff(localTarif);
 		packages.add(pack);
 		return pack; 

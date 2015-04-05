@@ -9,7 +9,7 @@ public interface MobilePackage {
 	 String getName();
 	 MobilePackage setLocalTariff(LocalTarif tariffNew);
 	 MobilePackage setGlobalTariff(GlobalTariif tariffNew);
-	 Information getInformation(Class<Information> type);
+	 Information getInformation();
 	 int calculateCharge(int time, int abonentKey, int foreginOperator);
 	 boolean isUseTariffById(int id);
 	 boolean isUseDiscountById(int id);

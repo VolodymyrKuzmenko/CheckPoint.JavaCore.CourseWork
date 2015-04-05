@@ -1,13 +1,14 @@
-package com.checkpoint.javacore.coursework.networkoperator.packages;
+	package com.checkpoint.javacore.coursework.networkoperator.packages;
 
 import java.util.HashMap;
 
+import com.checkpoint.javacore.coursework.abonent.AbonentInformation;
 import com.checkpoint.javacore.coursework.abonent.Information;
 import com.checkpoint.javacore.coursework.networkoperator.tariffs.GlobalTariif;
 import com.checkpoint.javacore.coursework.networkoperator.tariffs.LocalTarif;
+import com.checkpoint.javacore.coursework.networkoperator.taxcalculation.CommonStrategy;
 import com.checkpoint.javacore.coursework.networkoperator.taxcalculation.StrategyCalculationPool;
 import com.checkpoint.javacore.coursework.networkoperator.taxcalculation.TaxCalculatingStrategy;
-import com.checkpoint.javacore.coursework.networkoperator.taxcalculation.TaxPerMinutesStrategy;
 
 public class BasicPackage implements MobilePackage {
 	private int id;
@@ -15,15 +16,20 @@ public class BasicPackage implements MobilePackage {
 	private LocalTarif localTarif;
 	private GlobalTariif globalTariif;
 	private HashMap<Integer, TaxCalculatingStrategy> abonentStrategys = new HashMap<Integer, TaxCalculatingStrategy>();
+	private Class<? extends CommonStrategy> calculatingType;
 	
-	
+	public void setCalculatingType(Class<?extends CommonStrategy> calculatingType) {
+		this.calculatingType = calculatingType;
+	}
+
 	public BasicPackage() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BasicPackage(String name, int id) {
+	public BasicPackage(String name, int id,Class<? extends CommonStrategy> typeStrategy ) {
 		this.name = name;
 		this.id = id;
+		this.calculatingType = typeStrategy;
 	}
 
 	@Override
@@ -49,16 +55,20 @@ public class BasicPackage implements MobilePackage {
 	}
 
 	@Override
-	public Information getInformation(Class<Information> type) {
-		// TODO Auto-generated method stub
-		return null;
+	public Information getInformation() {
+		AbonentInformation info = new AbonentInformation();
+		info.setGlobalTarifInformation(globalTariif.getInformation().buildInformation());
+		info.setLocalTarifInformation(localTarif.getInformation().buildInformation());
+		info.addCalculationStrategyInformation(StrategyCalculationPool.getStrategy(calculatingType).getDescription());
+		info.addPakageInformation(name, id);
+		return info;
 	}
 
 	@Override
 	public int calculateCharge(int time, int abonentKey, int foreginOperator) {
 		if(!abonentStrategys.containsKey(new Integer(abonentKey))){
 			
-			abonentStrategys.put(abonentKey, StrategyCalculationPool.getStrategy(TaxPerMinutesStrategy.class));
+			abonentStrategys.put(abonentKey, StrategyCalculationPool.getStrategy(calculatingType));
 		}
 		if (foreginOperator != -1) {
 			return globalTariif.calculateMoneyPay(time,

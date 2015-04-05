@@ -9,6 +9,7 @@ public interface TaxCalculatingStrategy {
 	TaxCalculatingStrategy addLicenseFee(LicenseFee fee);
 	TaxCalculatingStrategy addForeginOperatorValue(int value);
 	TaxCalculatingStrategy removeLinks();
+	String getDescription();
 	boolean isLinked();
 	
 	int calculate();

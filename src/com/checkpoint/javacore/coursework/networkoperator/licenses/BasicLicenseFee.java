@@ -1,5 +1,8 @@
 package com.checkpoint.javacore.coursework.networkoperator.licenses;
 
+import com.checkpoint.javacore.coursework.abonent.AbonentInformation;
+import com.checkpoint.javacore.coursework.abonent.Information;
+
 public class BasicLicenseFee implements LicenseFee {
 	private int value;
 	private int id;
@@ -34,6 +37,11 @@ public class BasicLicenseFee implements LicenseFee {
 	public String getName() {
 		// TODO Auto-generated method stub
 		return this.name;
+	}
+
+	@Override
+	public Information getInformation() {
+		return new AbonentInformation().addLicenseFeeInformation(name, value);
 	}
 
 }

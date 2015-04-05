@@ -1,5 +1,6 @@
 package com.checkpoint.javacore.coursework.networkoperator.tariffs;
 
+import com.checkpoint.javacore.coursework.abonent.Information;
 import com.checkpoint.javacore.coursework.networkoperator.discoints.Discount;
 import com.checkpoint.javacore.coursework.networkoperator.licenses.LicenseFee;
 
@@ -50,6 +51,10 @@ public class GeneralTariff {
 	}
 	public Discount[] getDiscounts() {
 		return discounts;
+	}
+	
+	public Information getInformation(){
+		return null;
 	}
 
 
