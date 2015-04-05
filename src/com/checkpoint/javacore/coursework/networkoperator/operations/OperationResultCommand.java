@@ -8,6 +8,7 @@ public class OperationResultCommand implements OperationCommand {
 
 	private Abonent resiever;
 	private String message;
+	@SuppressWarnings("unused")
 	private NetworkOperatorSender sender;
 	
 	@Override

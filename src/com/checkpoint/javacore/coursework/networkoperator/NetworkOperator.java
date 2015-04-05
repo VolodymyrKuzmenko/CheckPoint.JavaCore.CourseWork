@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 
 
+
+
 import com.checkpoint.javacore.coursework.abonent.Abonent;
 import com.checkpoint.javacore.coursework.abonent.PersonalAccaunt;
 import com.checkpoint.javacore.coursework.alertsystem.NetworkOperatorSender;
@@ -19,13 +21,14 @@ import com.checkpoint.javacore.coursework.networkoperator.licenses.LicenseFee;
 import com.checkpoint.javacore.coursework.networkoperator.packages.MobilePackage;
 import com.checkpoint.javacore.coursework.networkoperator.tariffs.GeneralTariff;
 import com.checkpoint.javacore.coursework.networkoperator.tariffs.GlobalTariif;
-import com.sun.org.apache.bcel.internal.generic.NEWARRAY;
 
 public class NetworkOperator {
 	private int operatorId;
 	private ArrayList<NetworkOperator> networkOperators = new ArrayList<>();
 	private MobilePackage [] mobilePackages;
+	@SuppressWarnings("unused")
 	private LicenseFee [] licenseFees;
+	@SuppressWarnings("unused")
 	private Discount [] discounts;
 	private GeneralTariff [] tariffs;
 	private String operatorNumberCode;
